@@ -1,5 +1,5 @@
 <script>
-	import Grid from '../components/Grid.svelte';
+	import { random_value } from '../funcs/get_random_seed';
 </script>
 
 <svelte:head>
@@ -8,7 +8,7 @@
 </svelte:head>
 
 <section>
-	<Grid />
+	<a href={`/${random_value()}`}><button class="new-game-btn">Play</button></a>
 </section>
 
 <style>
@@ -18,5 +18,21 @@
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
+	}
+	.new-game-btn {
+		cursor: pointer;
+		color: var(--white-color-text);
+		border: none;
+		padding: 1em 5em;
+		font-size: 1.5em;
+		font-weight: 700;
+		background-color: #0072e3;
+		border-radius: 5px;
+	}
+	.new-game-btn:hover {
+		background-color: #0059b3;
+	}
+	.new-game-btn:active {
+		background-color: hsl(210, 100%, 30%);
 	}
 </style>

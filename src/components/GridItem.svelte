@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { SUDOKU_REGION_LENGTH } from '../constants';
 	import type { MouseEventHandler } from '../global';
 	import type { Grid } from '../utils';
 
@@ -12,8 +13,11 @@
 	export let on_click: (element: EventTarget & HTMLButtonElement) => void;
 
 	function check_active_region() {
-		const column_condition = Math.floor(column / 3) === Math.floor(active_column / 3);
-		const row_condition = Math.floor(row_id / 3) === Math.floor(active_row / 3);
+		const column_condition =
+			Math.floor(column / SUDOKU_REGION_LENGTH) ===
+			Math.floor(active_column / SUDOKU_REGION_LENGTH);
+		const row_condition =
+			Math.floor(row_id / SUDOKU_REGION_LENGTH) === Math.floor(active_row / SUDOKU_REGION_LENGTH);
 		return column_condition && row_condition;
 	}
 
