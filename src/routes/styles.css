@@ -12,9 +12,16 @@
 	--color-text: rgba(0, 0, 0, 0.7);
 	--column-width: 42rem;
 	--column-margin-top: 4rem;
-
-	--grid-divider-strong: #7a7a7a;
-	--grid-divider-default: #bfbfbf;
+	
+	--error-text-color: #e55c6c;
+	--solved-text-color: #0072e3;
+	--sudoku-text-color: #344861;
+	--sudoku-active-region: #e2ebf3;
+	--sudoku-active-field: #bbdefb;
+	--sudoku-active-line: #e2ebf3;
+	--sudoku-error-field: #f7cfd6;
+	--grid-divider-strong: #344861;
+	--grid-divider-default: #bfc6d4;
 
 	font-family: var(--font-body);
 	color: var(--color-text);
@@ -109,3 +116,12 @@ button:focus:not(:focus-visible) {
 	width: 1px;
 	white-space: nowrap;
 }
+/* :global(.grid-row:nth-child(3) > *),
+:global(.grid-row:nth-child(6) > *) {
+	border-bottom-color: var(--grid-divider-strong);
+}
+
+:global(.grid-row:nth-child(4) > *),
+:global(.grid-row:nth-child(7) > *) {
+	border-top-color: var(--grid-divider-strong);
+} */
