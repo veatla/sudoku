@@ -3,6 +3,9 @@
 ## Todo List 
  - Add game finish(error & successfully) dialog 
  - Add notes
+ - Add tips
+ - Create rules pages
+ - View solved version
  - ...
 
 
