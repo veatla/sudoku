@@ -4,7 +4,8 @@
 
 	import GridItem from '../components/GridItem.svelte';
 	import { get_sudoku, type Grid } from '../utils';
-	import { MAX_ERRORS_COUNT, SUDOKU_FIELDS_COUNT } from '../constants';
+	import { SUDOKU_FIELDS_COUNT } from '../constants';
+	import { get_random_seed } from '../funcs/get_random_seed';
 
 	export let resolve_seed: string | undefined;
 	export let fill_seed: string | undefined;
@@ -77,12 +78,14 @@
 		if (0 === $counts.unsolved) {
 			setTimeout(() => {
 				alert('Congratulations! You finished the game!');
+				const random = get_random_seed();
+				window.location.pathname = random;
 			}, 100);
 		}
 		if ($errors_count === 3) {
 			alert('ERROR! Restart the game!');
-			generate_sudoku(false);
-			errors_count.set(0);
+			const random = get_random_seed();
+			window.location.pathname = random;
 		}
 	}
 </script>

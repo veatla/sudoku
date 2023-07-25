@@ -1,5 +1,5 @@
 <script>
-	import { random_value } from '../funcs/get_random_seed';
+	import { get_random_seed } from '../funcs/get_random_seed';
 </script>
 
 <svelte:head>
@@ -8,7 +8,7 @@
 </svelte:head>
 
 <section>
-	<a href={`/${random_value()}`}><button class="new-game-btn">Play</button></a>
+	<a href={`/${get_random_seed()}`}><button class="new-game-btn">Play</button></a>
 </section>
 
 <style>
@@ -20,6 +20,7 @@
 		flex: 0.6;
 	}
 	.new-game-btn {
+		
 		cursor: pointer;
 		color: var(--white-color-text);
 		border: none;

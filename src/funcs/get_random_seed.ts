@@ -8,7 +8,7 @@ function generate_id(length = 10) {
 	}
 	return result;
 }
-export function random_value() {
+export function get_random_seed() {
 	const fill_seed = generate_id();
 	const resolved_seed = generate_id();
 	return fill_seed + ':' + resolved_seed;
