@@ -1,6 +1,8 @@
 # sudoku game
 
 ## Todo List 
+ - Timer
+ - Action History
  - Add game finish(error & successfully) dialog 
  - Add notes
  - Add tips
