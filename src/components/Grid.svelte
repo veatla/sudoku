@@ -6,6 +6,7 @@
 	import { get_sudoku, type Grid } from '../utils';
 	import { SUDOKU_FIELDS_COUNT } from '../constants';
 	import { get_random_seed } from '../funcs/get_random_seed';
+	import dialog_store, { DIALOG_STORE } from '../shared/dialog_store';
 
 	export let resolve_seed: string | undefined;
 	export let fill_seed: string | undefined;
@@ -83,9 +84,7 @@
 			}, 100);
 		}
 		if ($errors_count === 3) {
-			alert('ERROR! Restart the game!');
-			const random = get_random_seed();
-			window.location.pathname = random;
+			dialog_store.set(DIALOG_STORE.YOU_LOSE);
 		}
 	}
 </script>
