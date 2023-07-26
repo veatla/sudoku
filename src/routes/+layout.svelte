@@ -1,8 +1,10 @@
 <script>
+	import Dialog from '../container/Dialog/Dialog.svelte';
 	import Header from './Header.svelte';
 	import './styles.css';
 </script>
 
+<Dialog />
 <div class="app">
 	<Header />
 
@@ -10,9 +12,7 @@
 		<slot />
 	</main>
 
-	<footer>
-		
-	</footer>
+	<footer />
 </div>
 
 <style>
@@ -40,7 +40,6 @@
 		align-items: center;
 		padding: 12px;
 	}
-
 
 	@media (min-width: 480px) {
 		footer {
