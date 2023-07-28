@@ -1,9 +1,7 @@
 # sudoku game
  - Demo - https://sudoku-ochre.vercel.app/
 ## Todo List 
- - Timer
- - Action History
- - Add game finish(error & successfully) dialog 
+ - Action Historyw
  - Add notes
  - Add tips
  - Create rules pages
