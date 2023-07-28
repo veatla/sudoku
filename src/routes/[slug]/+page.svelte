@@ -9,7 +9,7 @@
 </svelte:head>
 
 <section>
-	<Grid fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
+	<Grid difficulty={data.difficulty} fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
 </section>
 
 <style>
