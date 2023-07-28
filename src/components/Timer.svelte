@@ -37,7 +37,7 @@
 					fill-rule="evenodd"
 					clip-rule="evenodd"
 					fill="currentColor"
-					d={paused_svg_path}
+					d={playing_svg_path}
 					local="true"
 				/>
 			{:else}
@@ -47,7 +47,7 @@
 					fill-rule="evenodd"
 					clip-rule="evenodd"
 					fill="currentColor"
-					d={playing_svg_path}
+					d={paused_svg_path}
 					local="true"
 				/>
 			{/if}
@@ -58,7 +58,7 @@
 <style>
 	.timer-wrapper {
 		display: flex;
-		justify-content: center;
+		justify-content: flex-end;
 		align-items: center;
 	}
 	.timer {
