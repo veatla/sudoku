@@ -1,6 +1,13 @@
 import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from './constants';
 import seedrandom from 'seedrandom';
 
+export enum SUDOKU_DIFFICULTY {
+	'easy',
+	'medium',
+	'hard',
+	'expert',
+	'evil'
+}
 export type Grid = {
 	value: number;
 	state: 'none' | 'err' | 'ok' | 'default';
@@ -184,7 +191,11 @@ function getCellRemovalOrder(rng: seedrandom.PRNG) {
 	return removalOrder;
 }
 /** To get unresolved and solved sudoku */
-export function get_sudoku(resolve_seed?: string, fill_seed?: string) {
+export function get_sudoku(
+	resolve_seed?: string,
+	fill_seed?: string,
+	difficulty?: SUDOKU_DIFFICULTY
+) {
 	const sudoku = {
 		solved: create_empty_grid(),
 		filled_fields: 0,

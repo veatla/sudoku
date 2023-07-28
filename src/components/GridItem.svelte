@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { SUDOKU_REGION_LENGTH } from '../constants';
-	import type { MouseEventHandler } from '../global';
 	import type { Grid } from '../utils';
 
 	export let value: number;
@@ -10,7 +9,7 @@
 	export let column: number;
 	export let row_id: number;
 	export let state: Grid[0][0]['state'];
-	export let on_click: (element: EventTarget & HTMLButtonElement) => void;
+	export let on_click: () => void;
 
 	function check_active_region() {
 		const column_condition =
@@ -25,10 +24,6 @@
 		is_active_column = false,
 		is_active_region = false;
 
-	const handle_click: MouseEventHandler<HTMLButtonElement> = (e) => {
-		on_click(e.currentTarget);
-	};
-
 	$: {
 		is_active_row = active_row === row_id;
 		is_active_column = column === active_column;
@@ -38,7 +33,7 @@
 
 <button
 	{id}
-	on:click={handle_click}
+	on:click={on_click}
 	data-active-row={is_active_row}
 	data-state={state}
 	data-active-column={is_active_column}
@@ -53,11 +48,12 @@
 
 <style>
 	.grid-item {
-		border: 1px solid var(--grid-divider-default);
+		border: 1px solid var(--sudoku-field-border);
 		width: 50px;
 		height: 50px;
 		text-align: center;
-		background-color: #eeeeee;
+		background-color: var(--sudoku-field-color);
+		color: var(--sudoku-text-color);
 		user-select: none;
 		cursor: pointer;
 		outline: none;
@@ -81,12 +77,10 @@
 	.grid-item[data-state='ok'] {
 		color: var(--solved-text-color);
 	}
-	.grid-item:nth-of-type(3),
-	.grid-item:nth-of-type(6) {
-		border-right-color: var(--grid-divider-strong);
+	.grid-item:nth-of-type(3n) {
+		border-right-color: var(--sudoku-region-border);
 	}
-	.grid-item:nth-of-type(4),
-	.grid-item:nth-of-type(7) {
-		border-left-color: var(--grid-divider-strong);
+	.grid-item:nth-of-type(3n + 1) {
+		border-left-color: var(--sudoku-region-border);
 	}
 </style>
