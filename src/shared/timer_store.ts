@@ -1,5 +1,6 @@
 import { writable } from "svelte/store";
 
+/** Stores time in milliseconds */
 export const timer_store = writable({
       count: 0,
       paused: false,
