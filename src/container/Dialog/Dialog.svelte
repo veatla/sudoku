@@ -14,9 +14,7 @@
 	}
 	function subscriber() {
 		window.document.addEventListener('click', click_handler);
-		console.log('called');
 		return () => {
-			console.log('removed');
 			window.document.removeEventListener('click', click_handler);
 		};
 	}
@@ -25,7 +23,7 @@
 <div id="dialog-root" data-active={$dialog_store !== DIALOG_STORE.NONE}>
 	<div id="dialog-content">
 		{#if $dialog_store === DIALOG_STORE.YOU_LOSE}
-			<YouLoseDialog {subscriber} />
+			<YouLoseDialog />
 		{:else if $dialog_store === DIALOG_STORE.YOU_WIN}
 			<YouWinDialog {subscriber} />
 		{/if}

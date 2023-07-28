@@ -3,66 +3,29 @@
 	import { writable } from 'svelte/store';
 
 	import GridItem from '../components/GridItem.svelte';
-	import { get_sudoku, SUDOKU_DIFFICULTY, type Grid } from '../utils';
+	import { get_sudoku, SUDOKU_DIFFICULTY, type Grid, unresolve_sudoku } from '../utils';
 	import { SUDOKU_FIELDS_COUNT } from '../constants';
 	import { get_random_seed } from '../funcs/get_random_seed';
 	import dialog_store, { DIALOG_STORE } from '../shared/dialog_store';
-	import Timer from './Timer.svelte';
 	import { timer_store } from '../shared/timer_store';
+	import { active_field, set_active_field } from '../shared/active_field';
+	import { filled_counts, sudoku_store } from '../shared/sudoku_store';
 
 	export let resolve_seed: string | undefined;
 	export let difficulty: SUDOKU_DIFFICULTY = SUDOKU_DIFFICULTY.easy;
 	export let fill_seed: string | undefined;
 
-	let sudoku_unsolved_grid: Grid = [];
-	let sudoku_solved_grid: Grid = [];
-	const errors_count = writable(0);
-
 	let set_timer: NodeJS.Timer | number | null = null;
-
-	/** Store which contains solved & unsolved counts of sudoku */
-	const filled_counts = writable({
-		solved: 0,
-		unsolved: 81
-	});
-
-	/** Active selected field */
-	const active_field = writable({
-		active_column: 0,
-		active_row: 0,
-		active_solved_value: {
-			value: 0,
-			state: 'none'
-		},
-		active_value: 0
-	});
 
 	const subscribe_to_key_input = (ev: KeyboardEvent) => {
 		const value = Number(ev.key);
-
-		const { active_row, active_column, active_solved_value, active_value } = $active_field;
 
 		/** If timer stopped, then disable input */
 		if ($timer_store.paused) return false;
 		/** Check if `value` is number */
 		if (Number.isNaN(value)) return false;
 
-		const is_does_not_solved = active_value !== active_solved_value.value;
-		const is_solved = value === active_solved_value.value;
-
-		if (is_does_not_solved) {
-			sudoku_unsolved_grid[active_row][active_column].value = Number(ev.key);
-			sudoku_unsolved_grid[active_row][active_column].state = is_solved ? 'ok' : 'err';
-
-			if (!is_solved) {
-				errors_count.set($errors_count + 1);
-			} else {
-				filled_counts.set({
-					solved: $filled_counts.solved + 1,
-					unsolved: $filled_counts.unsolved - 1
-				});
-			}
-		}
+		set_active_field(value, $active_field);
 	};
 	function on_mount_component() {
 		window.addEventListener('keypress', subscribe_to_key_input);
@@ -81,8 +44,11 @@
 			unsolved: SUDOKU_FIELDS_COUNT - sudoku.filled_fields
 		});
 
-		sudoku_unsolved_grid = sudoku.unresolved;
-		sudoku_solved_grid = sudoku.solved;
+		sudoku_store.set({
+			errors_count: 0,
+			solved_grid: sudoku.solved,
+			unsolved_grid: sudoku.unresolved
+		});
 
 		if (subscribe) {
 			return on_mount_component();
@@ -93,7 +59,7 @@
 		active_field.set({
 			active_column: column,
 			active_value: value,
-			active_solved_value: sudoku_solved_grid[row][column],
+			active_solved_value: $sudoku_store.solved_grid[row][column],
 			active_row: row
 		});
 	}
@@ -108,7 +74,7 @@
 				window.location.pathname = random;
 			}, 100);
 		}
-		if ($errors_count === 3) {
+		if ($sudoku_store.errors_count >= 3) {
 			dialog_store.set(DIALOG_STORE.YOU_LOSE);
 		}
 	}
@@ -128,9 +94,8 @@
 	}
 </script>
 
-<Timer />
 <div class="grid">
-	{#each sudoku_unsolved_grid as rows, row_id}
+	{#each $sudoku_store.unsolved_grid as rows, row_id}
 		<div class="grid-row">
 			{#each rows as { value, state }, column}
 				<GridItem
