@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
-import type { Grid } from '../utils';
+import type { Grid } from '../utils/sudoku';
 
 /** Active selected field */
 export const sudoku_store = writable({

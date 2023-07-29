@@ -1,15 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
 
 	import GridItem from '../components/GridItem.svelte';
-	import { get_sudoku, SUDOKU_DIFFICULTY, type Grid, unresolve_sudoku } from '../utils';
 	import { SUDOKU_FIELDS_COUNT } from '../constants';
 	import { get_random_seed } from '../funcs/get_random_seed';
 	import dialog_store, { DIALOG_STORE } from '../shared/dialog_store';
 	import { timer_store } from '../shared/timer_store';
 	import { active_field, set_active_field } from '../shared/active_field';
 	import { filled_counts, sudoku_store } from '../shared/sudoku_store';
+	import { SUDOKU_DIFFICULTY, get_sudoku } from '../utils/sudoku';
 
 	export let resolve_seed: string | undefined;
 	export let difficulty: SUDOKU_DIFFICULTY = SUDOKU_DIFFICULTY.easy;
@@ -25,7 +24,7 @@
 		/** Check if `value` is number */
 		if (Number.isNaN(value)) return false;
 
-		set_active_field(value, $active_field);
+		set_active_field(value, $active_field, true);
 	};
 	function on_mount_component() {
 		window.addEventListener('keypress', subscribe_to_key_input);
@@ -115,6 +114,9 @@
 
 <style>
 	.grid {
+		width: 452px;
+		height: 452px;
+		box-sizing: border-box;
 		border: 1px solid var(--sudoku-region-border);
 	}
 	.grid-row {
