@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { SUDOKU_REGION_LENGTH } from '../constants';
-	import type { Grid } from '../utils';
+	import type { Grid } from '../utils/sudoku';
 
 	export let value: number;
 	export let id: string;

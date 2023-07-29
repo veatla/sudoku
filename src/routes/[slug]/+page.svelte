@@ -1,5 +1,6 @@
 <script>
 	import Grid from '../../components/Grid.svelte';
+	import LevelControllers from '../../components/LevelControllers.svelte';
 	import InputButtons from '../../components/Numpad.svelte';
 	import Timer from '../../components/Timer.svelte';
 	export let data;
@@ -9,11 +10,10 @@
 	<title>Home</title>
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
-
 <section>
 	<Grid difficulty={data.difficulty} fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
 	<div class="right-side">
-		<Timer />
+		<LevelControllers />
 		<InputButtons />
 	</div>
 </section>

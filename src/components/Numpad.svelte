@@ -4,7 +4,7 @@
 
 	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	function handle_click_number(num: number) {
-		set_active_field(num, $active_field);
+		set_active_field(num, $active_field, true);
 	}
 </script>
 
