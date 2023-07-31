@@ -1,15 +1,21 @@
 <script>
-	import Button from '../components/Button.svelte';
-	import { get_random_seed } from '../funcs/get_random_seed';
+	import Button from '$components/Button.svelte';
+	import { get_random_seed } from '$funcs/get_random_seed';
+	import { t } from '$hooks/i18n';
+
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>{$t('page.main')}</title>
+	<meta name="description" content="Sudoku" />
 </svelte:head>
 
 <section>
-	<a href={`/${get_random_seed()}`}><Button>Play</Button></a>
+	<a href={`/${get_random_seed()}`}>
+		<Button>
+			{$t('button.play')}
+		</Button>
+	</a>
 </section>
 
 <style>

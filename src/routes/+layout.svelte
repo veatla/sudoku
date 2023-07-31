@@ -1,7 +1,10 @@
 <script>
-	import Dialog from '../container/Dialog/Dialog.svelte';
+	import Dialog from '$container/Dialog/Dialog.svelte';
+	import { init_locales } from '$hooks/i18n';
 	import Header from './Header.svelte';
 	import './styles.css';
+	
+	init_locales()
 </script>
 
 <Dialog />

@@ -1,26 +1,25 @@
-import seedrandom from "seedrandom";
+import type seedrandom from "seedrandom";
 import type { Grid } from "./sudoku";
 
 /** To unresolve solved sudoku */
-export function unresolve_sudoku(sudoku: Grid, filled_fields = 30, seed?: seedrandom.PRNG) {
+export function unresolve_sudoku(sudoku: Grid, filled_fields = 30, seed: seedrandom.PRNG) {
 	const fields_to_fill = Math.floor(Math.random() * 10) + filled_fields;
-	const rng = seed ?? seedrandom(String(Date.now()));
 
 	const filled = {
 		count: 0
 	};
 
 	// Get the predetermined order for removing cells based on the seed
-	const cell_removal_order = get_cell_removal_order(rng);
+	const cell_removal_order = get_cell_removal_order(seed);
 
 	for (const [i, j] of cell_removal_order) {
 		if (filled.count >= fields_to_fill) break;
-		const fill_this_field = get_random_boolean(rng);
+		const fill_this_field = get_random_boolean(seed);
 		if (fill_this_field && filled.count < filled_fields) {
 			filled.count += 1;
 		} else {
 			sudoku[i][j].value = 0;
-			sudoku[i][j].state = 'default';
+			sudoku[i][j].state = 'none';
 		}
 	}
 

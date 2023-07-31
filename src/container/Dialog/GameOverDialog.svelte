@@ -1,7 +1,7 @@
 <script>
-	import Button from '../../components/Button.svelte';
-	import { get_random_seed } from '../../funcs/get_random_seed';
-
+	import Button from '$components/Button.svelte';
+	import { get_random_seed } from '$funcs/get_random_seed';
+	import { t } from '$hooks/i18n';
 
 	function handle_click() {
 		window.location.href = '/';
@@ -10,10 +10,10 @@
 </script>
 
 <div class="content-wrapper">
-	<h3>You Lose!</h3>
-	<p>You have made 3 mistakes and lost this game</p>
-	<Button on_click={() => location.reload()}>Restart</Button>
-	<Button on_click={handle_click}>New Game</Button>
+	<h3>{$t('title.you_lose')}</h3>
+	<p>{$t('you_made_3_mistakes')}</p>
+	<Button on_click={() => location.reload()}>{$t('button.restart')}</Button>
+	<Button on_click={handle_click}>{$t('button.new_game')}</Button>
 </div>
 
 <style>

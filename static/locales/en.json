@@ -1,0 +1,10 @@
+{
+      "sudoku": "Sudoku",
+      "page.main": "Main",
+      "sudoku.mistakes": "Mistakes",
+      "button.play": "Play",
+      "button.restart": "Restart",
+      "button.new_game": "New game",
+      "title.you_lose": "You Lose!",
+      "you_made_3_mistakes": "You have made 3 mistakes and lost this game"
+}

@@ -1,4 +1,4 @@
-import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from '../constants';
+import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from '$constants';
 import type { Grid } from './sudoku';
 
 
@@ -16,13 +16,15 @@ export function fill_sudoku_grid(grid: Grid) {
 	// Trying to place a number from 1 to SUDOKU_LIMIT_LENGTH in fields
 	for (const num of possible_numbers) {
 		grid[row][col].value = num;
-
+		grid[row][col].state = 'default';
+		
 		// Recursive function to fill another field
 		if (fill_sudoku_grid(grid)) {
 			return true;
 		}
-
+		
 		grid[row][col].value = 0;
+		grid[row][col].state = 'none';
 	}
 
 	return false;

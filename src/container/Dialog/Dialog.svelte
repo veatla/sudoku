@@ -1,5 +1,5 @@
 <script>
-	import dialog_store, { DIALOG_STORE } from '../../shared/dialog_store';
+	import dialog_store, { DIALOG_STORE } from '$shared/dialog_store';
 	import YouLoseDialog from './GameOverDialog.svelte';
 	import YouWinDialog from './YouWinDialog.svelte';
 
