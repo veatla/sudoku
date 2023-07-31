@@ -1,5 +1,6 @@
 <script>
 	import { page } from '$app/stores';
+	import { t } from '$hooks/i18n';
 </script>
 
 <header>
@@ -9,7 +10,7 @@
 		</svg>
 		<ul>
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
-				<a href="/">Home</a>
+				<a href="/">{$t('page.main')}</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">

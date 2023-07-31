@@ -1,20 +1,20 @@
 <script>
-	import Grid from '../../components/Grid.svelte';
-	import LevelControllers from '../../components/LevelControllers.svelte';
-	import InputButtons from '../../components/Numpad.svelte';
-	import Timer from '../../components/Timer.svelte';
+	import Grid from '$components/Grid.svelte';
+	import LevelControllers from '$components/LevelControllers.svelte';
+	import Numpad from '$components/Numpad.svelte';
+	import { t } from '$hooks/i18n';
+
 	export let data;
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>{$t('hello')}</title>
 </svelte:head>
 <section>
 	<Grid difficulty={data.difficulty} fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
 	<div class="right-side">
 		<LevelControllers />
-		<InputButtons />
+		<Numpad />
 	</div>
 </section>
 

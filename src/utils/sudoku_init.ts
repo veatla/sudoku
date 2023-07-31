@@ -1,5 +1,5 @@
-import seedrandom from 'seedrandom';
-import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from '../constants';
+import type seedrandom from 'seedrandom';
+import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from '$constants';
 import type { Grid } from './sudoku';
 
 export function get_random_number(min: number, max: number) {
@@ -17,7 +17,8 @@ export function create_empty_grid(): Grid {
 		for (let i = 0; i < SUDOKU_LIMIT_LENGTH; i++) {
 			arr.push({
 				value: 0,
-				state: 'none'
+				state: 'none',
+				notes: [],
 			});
 		}
 		grid[i] = arr;
@@ -56,32 +57,39 @@ function shuffle_array(array: number[], rng: seedrandom.PRNG): number[] {
 	return shuffled_array;
 }
 // To fill sudoku with numbers from 1 to 9 to get resolvable sudoku
-export function fill_diagonal_blocks(grid: Grid, seed?: seedrandom.PRNG) {
+export function fill_diagonal_blocks(grid: Grid, seed: seedrandom.PRNG) {
 	// Create a random number generator with the provided seed or a default seed if not provided
-	const rng = seed ?? seedrandom(String(Date.now()));
 
 	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-	const shuffled_numbers = shuffle_array(numbers, rng);
+	const shuffled_numbers = shuffle_array(numbers, seed);
+
+
+	const first_region = shuffle_array([0, 1, 2], seed)
+	const second_region = shuffle_array([3, 4, 5], seed)
+	const third_region = shuffle_array([6, 7, 8], seed)
 
 	// Get random row numbers to fill with numbers 
 	const random_rows = [
-		shuffle_array([0, 1, 2], rng)[0],
-		shuffle_array([3, 4, 5], rng)[0],
-		shuffle_array([6, 7, 8], rng)[0]
+		first_region[0],
+		second_region[0],
+		third_region[0]
 	];
 
 	// Get random columns numbers to fill with numbers
 	const random_columns = [
-		shuffle_array([0, 1, 2], rng)[0],
-		shuffle_array([3, 4, 5], rng)[0],
-		shuffle_array([6, 7, 8], rng)[0]
+		first_region[1],
+		second_region[1],
+		third_region[1]
 	];;
 
 	// Fill by fields
 	for (const i of random_rows) {
 		for (const j of random_columns) {
 			const num = shuffled_numbers.pop();
-			if (num) grid[i][j].value = num;
+			if (num) {
+				grid[i][j].value = num;
+				grid[i][j].state = 'default';
+			};
 		}
 	}
 }

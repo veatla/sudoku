@@ -1,4 +1,4 @@
-import { SUDOKU_DIFFICULTY } from '../../utils/sudoku.js';
+import { SUDOKU_DIFFICULTY } from '$utils/sudoku';
 
 function random_value() {
 	return {

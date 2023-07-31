@@ -4,15 +4,16 @@ import { unresolve_sudoku } from './sudoku_unsolver';
 import { create_empty_grid, fill_diagonal_blocks } from './sudoku_init';
 
 export enum SUDOKU_DIFFICULTY {
-	'easy' = 30,
+	'easy' = 40,
 	'medium' = 30,
-	'hard' = 30,
-	'expert' = 30,
-	'evil' = 30
+	'hard' = 20,
+	'expert' = 10,
+	'evil' = 0
 }
 export type GridState = 'none' | 'err' | 'ok' | 'default';
 export type Grid = {
 	value: number;
+	notes: number[];
 	state: GridState;
 }[][];
 

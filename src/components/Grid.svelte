@@ -1,20 +1,21 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import GridItem from '../components/GridItem.svelte';
-	import { SUDOKU_FIELDS_COUNT } from '../constants';
-	import { get_random_seed } from '../funcs/get_random_seed';
-	import dialog_store, { DIALOG_STORE } from '../shared/dialog_store';
-	import { timer_store } from '../shared/timer_store';
-	import { active_field, set_active_field } from '../shared/active_field';
-	import { filled_counts, sudoku_store } from '../shared/sudoku_store';
-	import { SUDOKU_DIFFICULTY, get_sudoku } from '../utils/sudoku';
+	import GridItem from '$components/GridItem.svelte';
+	import { SUDOKU_FIELDS_COUNT } from '$constants';
+	import { get_random_seed } from '$funcs/get_random_seed';
+	import dialog_store, { DIALOG_STORE } from '$shared/dialog_store';
+	import { timer_store } from '$shared/timer_store';
+	import { active_field, set_active_field } from '$shared/active_field';
+	import { filled_counts, sudoku_store } from '$shared/sudoku_store';
+	import { SUDOKU_DIFFICULTY, get_sudoku } from '$utils/sudoku';
 
 	export let resolve_seed: string | undefined;
 	export let difficulty: SUDOKU_DIFFICULTY = SUDOKU_DIFFICULTY.easy;
 	export let fill_seed: string | undefined;
 
 	let set_timer: NodeJS.Timer | number | null = null;
+	const fields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 	const subscribe_to_key_input = (ev: KeyboardEvent) => {
 		const value = Number(ev.key);
@@ -24,7 +25,7 @@
 		/** Check if `value` is number */
 		if (Number.isNaN(value)) return false;
 
-		set_active_field(value, $active_field, true);
+		set_active_field(value, $active_field);
 	};
 	function on_mount_component() {
 		window.addEventListener('keypress', subscribe_to_key_input);
@@ -46,7 +47,8 @@
 		sudoku_store.set({
 			errors_count: 0,
 			solved_grid: sudoku.solved,
-			unsolved_grid: sudoku.unresolved
+			unsolved_grid: sudoku.unresolved,
+			mode: 'input'
 		});
 
 		if (subscribe) {
@@ -94,18 +96,13 @@
 </script>
 
 <div class="grid">
-	{#each $sudoku_store.unsolved_grid as rows, row_id}
+	{#each fields as row}
 		<div class="grid-row">
-			{#each rows as { value, state }, column}
+			{#each fields as column}
 				<GridItem
-					active_row={$active_field.active_row}
-					active_column={$active_field.active_column}
-					on_click={() => handle_on_click_field(Number(row_id), column, value)}
-					id={row_id + ':' + column}
+					on_click={(value) => handle_on_click_field(row, column, value)}
 					{column}
-					{row_id}
-					value={$timer_store.paused ? 0 : value}
-					{state}
+					{row}
 				/>
 			{/each}
 		</div>

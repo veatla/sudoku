@@ -6,6 +6,4 @@
 	onMount(subscriber);
 </script>
 
-<div>
-      You Win!
-</div>
+<div>You Win!</div>
