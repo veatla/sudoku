@@ -9,7 +9,7 @@
 	{disabled}
 	on:click={on_click}
 	title={$$props.title}
-	class={['btn', variant].join(' ').trim()}
+	class={['btn', variant, $$props.class].join(' ').trim()}
 	data-variant={variant}
 	data-is-rounded={is_rounded}
 >

@@ -54,6 +54,7 @@
 		--aspect-ratio="1/1"
 		--width="56px"
 		is_rounded
+		class={$sudoku_store.mode === 'notes' ? "note-button" : ""}
 		variant="game"
 		title="Note"
 	>
@@ -90,5 +91,8 @@
 	}
 	.controllers-header p {
 		font-weight: 700;
+	}
+	:global(.note-button) {
+		border: 3px solid var(--color-theme-2) !important;
 	}
 </style>

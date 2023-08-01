@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>{$t('hello')}</title>
+	<title>{$t('Game')}</title>
 </svelte:head>
 <section>
 	<Grid difficulty={data.difficulty} fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
