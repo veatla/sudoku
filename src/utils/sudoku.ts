@@ -10,7 +10,9 @@ export enum SUDOKU_DIFFICULTY {
 	'expert' = 10,
 	'evil' = 0
 }
+
 export type GridState = 'none' | 'err' | 'ok' | 'default';
+
 export type Grid = {
 	value: number;
 	notes: number[];
@@ -28,11 +30,16 @@ export function get_sudoku(
 		filled_fields: 0,
 		unresolved: [] as Grid
 	};
+
 	fill_diagonal_blocks(sudoku.solved, seedrandom(fill_seed));
+
 	sudoku.solved = solved_version(sudoku.solved);
+	
 	const unresolved = JSON.parse(JSON.stringify(sudoku.solved));
 	const filled_fields = unresolve_sudoku(unresolved, difficulty, seedrandom(resolve_seed));
+
 	sudoku.filled_fields = filled_fields;
 	sudoku.unresolved = unresolved;
+
 	return sudoku;
 }

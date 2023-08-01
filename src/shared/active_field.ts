@@ -34,31 +34,42 @@ export function set_active_field(value: number, store: ActiveFieldStore) {
 	if (!is_does_not_solved) return false;
 
 	function updater({ unsolved_grid, solved_grid, errors_count, mode }: SudokuStore) {
-		unsolved_grid[active_row][active_column].value = value;
+		const new_state = is_solved ? 'ok' : 'err';
+		if (mode === 'notes') {
+			const is_already = unsolved_grid[active_row][active_column].notes.indexOf(value);
+
+			if (is_already > -1) unsolved_grid[active_row][active_column].notes.splice(is_already, 1);
+			else unsolved_grid[active_row][active_column].notes.push(value);
+		} else {
+			unsolved_grid[active_row][active_column].value = value;
+		}
 
 		add_to_level_history(
-			is_solved ? 'ok' : 'err',
+			new_state,
 			unsolved_grid[active_row][active_column].state,
 			active_row,
 			active_column,
 			active_value,
-			value,
+			unsolved_grid[active_row][active_column].value,
 			mode
 		);
-		unsolved_grid[active_row][active_column].state = is_solved ? 'ok' : 'err';
 
-		if (is_solved && mode === 'input') {
-			filled_counts.update(({ solved, unsolved }) => ({
-				solved: solved + 1,
-				unsolved: unsolved - 1
-			}));
+		if (mode === 'input') {
+			unsolved_grid[active_row][active_column].state = new_state;
+
+			if (is_solved) {
+				filled_counts.update(({ solved, unsolved }) => ({
+					solved: solved + 1,
+					unsolved: unsolved - 1
+				}));
+			}
 		}
 
 		return {
 			unsolved_grid,
 			solved_grid,
 			mode,
-			errors_count: !is_solved ? errors_count + 1 : errors_count
+			errors_count: mode === 'notes' ? errors_count : is_solved ? errors_count : errors_count + 1
 		};
 	}
 	sudoku_store.update(updater);
@@ -72,9 +83,13 @@ export function set_field(value: LevelHistory) {
 
 	if (!is_does_not_solved) return false;
 
-	sudoku_store.update(({ unsolved_grid, solved_grid, errors_count, mode }) => {
-		unsolved_grid[row][column].value = value.prev;
-		unsolved_grid[row][column].state = prev_state;
+	sudoku_store.update(({ unsolved_grid, solved_grid, errors_count }) => {
+		if (mode === 'notes') unsolved_grid[row][column].notes.push(value.prev);
+		else {
+			unsolved_grid[row][column].value = value.prev;
+			unsolved_grid[row][column].state = prev_state;
+		}
+
 		return {
 			unsolved_grid,
 			mode,

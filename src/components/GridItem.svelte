@@ -55,8 +55,16 @@
 	data-active-field={is_active_column && is_active_row}
 	class="grid-item"
 >
-	{#if field.value !== 0 && !$timer_store.paused}
-		{field.value}
+	{#if !$timer_store.paused} 
+		{#if field.value !== 0}
+			{field.value}
+		{:else if field.notes.length}
+			{#each field.notes as note}
+				<div class="note-item" data-note={note}>
+					{note}
+				</div>
+			{/each}
+		{/if}
 	{/if}
 </button>
 
@@ -70,6 +78,7 @@
 		color: var(--sudoku-text-color);
 		user-select: none;
 		cursor: pointer;
+		position: relative;
 		outline: none;
 	}
 	.grid-item[data-active-column='true'] {
@@ -96,5 +105,62 @@
 	}
 	.grid-item:nth-of-type(3n + 1) {
 		border-left-color: var(--sudoku-region-border);
+	}
+
+	.note-item {
+		position: absolute;
+		top: 0;
+		left: 0;
+		font-size: .9rem;
+		font-weight: 400;
+		color: var(--sudoku-region-border);
+	}
+	.note-item[data-note='1'] {
+		top: 0%;
+		left: 0%;
+		transform: translate(50%, 0%);
+	}
+	.note-item[data-note='2'] {
+		top: 0%;
+		left: 50%;
+		transform: translate(-50%, 0%);
+	}
+	.note-item[data-note='3'] {
+		top: 0%;
+		left: 100%;
+		transform: translate(-150%, 0%);
+	}
+	.note-item[data-note='4'] {
+		top: 50%;
+		left: 0%;
+		transform: translate(50%, -50%);
+	}
+	.note-item[data-note='5'] {
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+	.note-item[data-note='6'] {
+		top: 50%;
+		left: 100%;
+		transform: translate(-150%, -50%);
+	}
+	.note-item[data-note='7'] {
+		bottom: 0;
+		top: unset;
+		left: 0;
+		transform: translate(50%, 0%);
+	}
+	.note-item[data-note='8'] {
+		bottom: 0;
+		top: unset;
+		left: 50%;
+		transform: translate(-50%, 0%);
+	}
+	.note-item[data-note='9'] {
+		bottom: 0;
+		top: unset;
+		left: 100%;
+		transform: translate(-150%, 0%);
 	}
 </style>
