@@ -4,7 +4,11 @@
 	import Numpad from '$components/Numpad.svelte';
 	import { t } from '$hooks/i18n';
 
-	export let data;
+	const data = {
+		difficulty: undefined,
+		fill_seed: undefined,
+		resolved_seed: undefined
+	}
 </script>
 
 <svelte:head>
@@ -26,8 +30,15 @@
 		flex: 0.6;
 		gap: 20px;
 	}
+
 	.right-side {
 		display: flex;
 		flex-direction: column;
+	}
+
+	@media only screen and ( max-width: 800px ) {
+		.right-side {
+			display: none;
+		}
 	}
 </style>

@@ -32,8 +32,8 @@
 	}
 
 	svg {
-		width: 2em;
-		height: 3em;
+		width: 1em;
+		height: 2em;
 		display: block;
 	}
 

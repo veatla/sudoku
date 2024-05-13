@@ -2,16 +2,16 @@ import { writable } from 'svelte/store';
 import type { Grid } from '$utils/sudoku';
 
 export type SudokuStore = {
-	unsolved_grid: Grid;
-	solved_grid: Grid;
+	unsolved: Grid;
+	solved: Grid;
 	errors_count: number;
 	mode: InputModes;
 }
 export type InputModes = 'notes' | 'input';
 /** Active selected field */
 export const sudoku_store = writable<SudokuStore>({
-	unsolved_grid: [],
-	solved_grid: [],
+	unsolved: [],
+	solved: [],
 	errors_count: 0,
 	mode: 'input'
 });

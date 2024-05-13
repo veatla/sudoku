@@ -1,8 +1,8 @@
 <script>
-	import Button from '$components/Button.svelte';
-	import { get_random_seed } from '$funcs/get_random_seed';
+	import Grid from '$components/Grid.svelte';
+	import LevelControllers from '$components/LevelControllers.svelte';
+	import Numpad from '$components/Numpad.svelte';
 	import { t } from '$hooks/i18n';
-
 </script>
 
 <svelte:head>
@@ -11,11 +11,11 @@
 </svelte:head>
 
 <section>
-	<a href={`/${get_random_seed()}`}>
-		<Button>
-			{$t('button.play')}
-		</Button>
-	</a>
+	<Grid difficulty={undefined} fill_seed={undefined} resolve_seed={undefined} />
+	<div class="right-side">
+		<LevelControllers />
+		<Numpad />
+	</div>
 </section>
 
 <style>
