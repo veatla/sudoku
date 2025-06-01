@@ -10,3 +10,6 @@ const config: PlaywrightTestConfig = {
 };
 
 export default config;
+		// "svelte": "^4.0.4",
+// @sveltejs/vite-plugin-svelte
+		// "@sveltejs/kit": "^2.21.1",
