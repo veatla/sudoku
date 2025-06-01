@@ -1,7 +1,7 @@
 <script>
-	import Grid from '$components/Grid.svelte';
-	import LevelControllers from '$components/LevelControllers.svelte';
-	import Numpad from '$components/Numpad.svelte';
+	import Grid from '$/shared/ui/grid.svelte';
+	import LevelControllers from '$/shared/ui/level-controllers.svelte';
+	import Numpad from '$/shared/ui/numpad.svelte';
 	import { t } from '$hooks/i18n';
 </script>
 

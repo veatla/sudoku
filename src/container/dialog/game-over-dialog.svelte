@@ -1,6 +1,6 @@
 <script>
-	import Button from '$components/Button.svelte';
-	import { get_random_seed } from '$funcs/get_random_seed';
+	import { get_random_seed } from '$/funcs/get-random-seed';
+	import Button from '$/shared/ui/button.svelte';
 	import { t } from '$hooks/i18n';
 
 	function handle_click() {
@@ -12,8 +12,8 @@
 <div class="content-wrapper">
 	<h3>{$t('title.you_lose')}</h3>
 	<p>{$t('you_made_3_mistakes')}</p>
-	<Button on_click={() => location.reload()}>{$t('button.restart')}</Button>
-	<Button on_click={handle_click}>{$t('button.new_game')}</Button>
+	<Button on:click={() => location.reload()}>{$t('button.restart')}</Button>
+	<Button on:click={handle_click}>{$t('button.new_game')}</Button>
 </div>
 
 <style>

@@ -1,20 +1,20 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
-	import GridItem from '$components/GridItem.svelte';
 	import { SUDOKU_FIELDS_COUNT } from '$constants';
-	import { get_random_seed } from '$funcs/get_random_seed';
-	import dialog_store, { DIALOG_STORE } from '$shared/dialog_store';
-	import { timer_store } from '$shared/timer_store';
-	import { active_field, set_active_field_value } from '$shared/active_field';
-	import { filled_counts, sudoku_store } from '$shared/sudoku_store';
+	import { get_random_seed } from '$/funcs/get-random-seed';
+	import dialog_store, { DIALOG_STORE } from '$/shared/dialog-store';
+	import { timer_store } from '$/shared/timer-store';
+	import { active_field } from '$/shared/active-field';
+	import { filled_counts, sudoku_store } from '$/shared/sudoku-store';
 	import { SUDOKU_DIFFICULTY, get_sudoku } from '$utils/sudoku';
+	import GridItem from './grid-item.svelte';
 
 	export let resolve_seed: string | undefined;
 	export let difficulty: SUDOKU_DIFFICULTY = SUDOKU_DIFFICULTY.easy;
 	export let fill_seed: string | undefined;
 
-	let set_timer: number | NodeJS.Timeout | null = null;
+	let set_timer: number | null = null;
 	const fields = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
 	function generate_sudoku() {
@@ -79,7 +79,7 @@
 		<div class="grid-row">
 			{#each fields as column}
 				<GridItem
-					on_click={() => handle_on_click_field(row, column)}
+					on:click={() => handle_on_click_field(row, column)}
 					{column}
 					{row}
 				/>

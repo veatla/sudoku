@@ -1,6 +1,6 @@
-import { writable } from 'svelte/store';
-import type { GridState } from '$utils/sudoku';
-import type { InputModes } from './sudoku_store';
+import { writable } from "svelte/store";
+import type { GridState } from "$utils/sudoku";
+import type { InputModes } from "./sudoku-store";
 
 export type LevelHistory = {
 	state: GridState;
@@ -31,7 +31,7 @@ export function add_to_level_history(
 			settled,
 			prev_state,
 			state,
-			mode: mode ?? 'input'
+			mode: mode ?? "input"
 		});
 		return prevState;
 	});

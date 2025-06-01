@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { active_field, set_active_field_value } from '$shared/active_field';
-	import { sudoku_store } from '$shared/sudoku_store';
-	import Button from './Button.svelte';
+	import { active_field, set_active_field_value } from '$/shared/active-field';
+	import { sudoku_store } from '$/shared/sudoku-store';
+	import Button from './button.svelte';
 
 	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	function handle_click_number(num: number) {
@@ -23,7 +23,7 @@
 		<Button
 			disabled={is_active_field_solved}
 			variant="game"
-			on_click={() => handle_click_number(number)}
+			on:click={() => handle_click_number(number)}
 		>
 			<h1>{number}</h1>
 		</Button>

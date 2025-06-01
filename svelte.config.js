@@ -18,6 +18,7 @@ const config = {
 			strict: false
 		}),
 		alias: {
+			$: "src/",
 			$components: "src/components",
 			$funcs: "src/funcs",
 			$hooks: "src/hooks",

@@ -1,6 +1,6 @@
-import type seedrandom from 'seedrandom';
-import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from '$constants';
-import type { Grid } from './sudoku';
+import type seedrandom from "seedrandom";
+import { SUDOKU_LIMIT_LENGTH, SUDOKU_REGION_LENGTH } from "$constants";
+import type { Grid } from "./sudoku";
 
 export function get_random_number(min: number, max: number) {
 	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -17,8 +17,8 @@ export function create_empty_grid(): Grid {
 		for (let i = 0; i < SUDOKU_LIMIT_LENGTH; i++) {
 			arr.push({
 				value: 0,
-				state: 'none',
-				notes: [],
+				state: "none",
+				notes: []
 			});
 		}
 		grid[i] = arr;
@@ -63,24 +63,15 @@ export function fill_diagonal_blocks(grid: Grid, seed: seedrandom.PRNG) {
 	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 	const shuffled_numbers = shuffle_array(numbers, seed);
 
+	const first_region = shuffle_array([0, 1, 2], seed);
+	const second_region = shuffle_array([3, 4, 5], seed);
+	const third_region = shuffle_array([6, 7, 8], seed);
 
-	const first_region = shuffle_array([0, 1, 2], seed)
-	const second_region = shuffle_array([3, 4, 5], seed)
-	const third_region = shuffle_array([6, 7, 8], seed)
-
-	// Get random row numbers to fill with numbers 
-	const random_rows = [
-		first_region[0],
-		second_region[0],
-		third_region[0]
-	];
+	// Get random row numbers to fill with numbers
+	const random_rows = [first_region[0], second_region[0], third_region[0]];
 
 	// Get random columns numbers to fill with numbers
-	const random_columns = [
-		first_region[1],
-		second_region[1],
-		third_region[1]
-	];;
+	const random_columns = [first_region[1], second_region[1], third_region[1]];
 
 	// Fill by fields
 	for (const i of random_rows) {
@@ -88,8 +79,8 @@ export function fill_diagonal_blocks(grid: Grid, seed: seedrandom.PRNG) {
 			const num = shuffled_numbers.pop();
 			if (num) {
 				grid[i][j].value = num;
-				grid[i][j].state = 'default';
-			};
+				grid[i][j].state = "default";
+			}
 		}
 	}
 }

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { number_to_time, timer_store } from '$shared/timer_store';
+	import { number_to_time, timer_store } from '$/shared/timer-store';
 	import { fly, slide } from 'svelte/transition';
 
 	let counter = '00:00';

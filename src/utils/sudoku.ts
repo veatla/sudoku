@@ -1,17 +1,17 @@
-import seedrandom from 'seedrandom';
-import solved_version from './sudoku_solver';
-import { unresolve_sudoku } from './sudoku_unsolver';
-import { create_empty_grid, fill_diagonal_blocks } from './sudoku_init';
+import seedrandom from "seedrandom";
+import solved_version from "./sudoku-solver";
+import { unresolve_sudoku } from "./sudoku-unsolver";
+import { create_empty_grid, fill_diagonal_blocks } from "./sudoku-init";
 
 export enum SUDOKU_DIFFICULTY {
-	'easy' = 40,
-	'medium' = 30,
-	'hard' = 20,
-	'expert' = 10,
-	'evil' = 0
+	"easy" = 40,
+	"medium" = 30,
+	"hard" = 20,
+	"expert" = 10,
+	"evil" = 0
 }
 
-export type GridState = 'none' | 'err' | 'ok' | 'default';
+export type GridState = "none" | "err" | "ok" | "default";
 
 export type Grid = {
 	value: number;
@@ -34,7 +34,7 @@ export function get_sudoku(
 	fill_diagonal_blocks(sudoku.solved, seedrandom(fill_seed));
 
 	sudoku.solved = solved_version(sudoku.solved);
-	
+
 	const unresolved = JSON.parse(JSON.stringify(sudoku.solved));
 	const filled_fields = unresolve_sudoku(unresolved, difficulty, seedrandom(resolve_seed));
 

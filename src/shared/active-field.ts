@@ -1,6 +1,6 @@
-import { get, writable } from 'svelte/store';
-import { filled_counts, sudoku_store, type SudokuStore } from './sudoku_store';
-import { add_to_level_history, type LevelHistory } from './level_history';
+import { get, writable } from "svelte/store";
+import { filled_counts, sudoku_store, type SudokuStore } from "./sudoku-store";
+import { add_to_level_history, type LevelHistory } from "./level-history";
 type ActiveFieldStore = {
 	column: number;
 	row: number;
@@ -27,8 +27,8 @@ export function set_active_field_value(value: number, store: ActiveFieldStore) {
 
 	function updater(sudoku_store: SudokuStore) {
 		const { unsolved, solved, errors_count, mode } = sudoku_store;
-		const new_state = is_solved ? 'ok' : 'err';
-		if (mode === 'notes') {
+		const new_state = is_solved ? "ok" : "err";
+		if (mode === "notes") {
 			const is_alrdy_has = unsolved[row][column].notes.indexOf(value);
 
 			if (is_alrdy_has > -1) unsolved[row][column].notes.splice(is_alrdy_has, 1);
@@ -47,7 +47,7 @@ export function set_active_field_value(value: number, store: ActiveFieldStore) {
 			mode
 		);
 
-		if (mode === 'input') {
+		if (mode === "input") {
 			unsolved[row][column].state = new_state;
 
 			if (is_solved) {
@@ -62,7 +62,7 @@ export function set_active_field_value(value: number, store: ActiveFieldStore) {
 			unsolved,
 			solved,
 			mode,
-			errors_count: mode === 'notes' ? errors_count : is_solved ? errors_count : errors_count + 1
+			errors_count: mode === "notes" ? errors_count : is_solved ? errors_count : errors_count + 1
 		};
 	}
 	return sudoku_store.update(updater);
@@ -72,12 +72,12 @@ export function set_field(value: LevelHistory) {
 	const { column, prev, row, settled, state, prev_state, mode } = value;
 
 	const is_does_not_solved = prev !== settled;
-	const is_solved = state === 'ok';
+	const is_solved = state === "ok";
 
 	if (!is_does_not_solved) return false;
 
 	sudoku_store.update(({ unsolved: unsolved_grid, solved: solved_grid, errors_count }) => {
-		if (mode === 'notes') unsolved_grid[row][column].notes.push(value.prev);
+		if (mode === "notes") unsolved_grid[row][column].notes.push(value.prev);
 		else {
 			unsolved_grid[row][column].value = value.prev;
 			unsolved_grid[row][column].state = prev_state;
@@ -91,7 +91,7 @@ export function set_field(value: LevelHistory) {
 		};
 	});
 
-	if (mode === 'notes') return false;
+	if (mode === "notes") return false;
 
 	filled_counts.update(({ solved, unsolved }) => ({
 		solved: is_solved ? solved - 1 : solved + 1,

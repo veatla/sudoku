@@ -1,5 +1,5 @@
 <script>
-	import Dialog from '$container/Dialog/Dialog.svelte';
+	import Dialog from '$/container/dialog/dialog.svelte';
 	import { init_locales } from '$hooks/i18n';
 	import { keyListener } from '$utils/listener';
 	import { onMount } from 'svelte';
