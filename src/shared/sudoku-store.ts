@@ -20,3 +20,24 @@ export const filled_counts = writable({
 	solved: 0,
 	unsolved: 81
 });
+
+export type RippleOrigin = { row: number; col: number };
+
+export type CelebratedUnits = {
+	rows: number[];
+	cols: number[];
+	blocks: number[];
+	/** Cell that triggered the completion — ripple spreads from here */
+	origin: RippleOrigin | null;
+};
+
+/** Units that just became complete — used for UI transition, cleared after animation */
+export const celebrated_units = writable<CelebratedUnits>({
+	rows: [],
+	cols: [],
+	blocks: [],
+	origin: null
+});
+
+/** Last cell the user correctly filled — used as ripple origin */
+export const last_filled_cell = writable<RippleOrigin | null>(null);

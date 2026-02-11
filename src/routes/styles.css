@@ -207,6 +207,8 @@
 
 	/* Цвет границы региона */
 	--sudoku-region-border: #283593;
+	/* Ripple celebration — тёмно-синий прямоугольник */
+	--sudoku-celebrate-bg: rgba(40, 53, 147, 0.5);
 
 	/* Цвет границы обычных ячеек */
 	--sudoku-field-border: #bfc6d4;
@@ -241,6 +243,7 @@
 
 	/* Цвет границы региона */
 	--sudoku-region-border: #0d47a1;
+	--sudoku-celebrate-bg: rgba(13, 71, 161, 0.5);
 
 	/* Цвет границы обычных ячеек */
 	--sudoku-field-border: #bdbdbd;
@@ -275,6 +278,7 @@
 
 	/* Цвет границы региона */
 	--sudoku-region-border: #333333;
+	--sudoku-celebrate-bg: rgba(51, 51, 51, 0.45);
 
 	/* Цвет границы обычных ячеек */
 	--sudoku-field-border: #bfc6d4;
@@ -309,6 +313,7 @@
 
 	/* Цвет границы региона */
 	--sudoku-region-border: #bbbbbb;
+	--sudoku-celebrate-bg: rgba(187, 187, 187, 0.5);
 
 	/* Цвет границы обычных ячеек */
 	--sudoku-field-border: #666666;

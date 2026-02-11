@@ -1,5 +1,5 @@
 import { get, writable } from "svelte/store";
-import { filled_counts, sudoku_store, type SudokuStore } from "./sudoku-store";
+import { filled_counts, last_filled_cell, sudoku_store, type SudokuStore } from "./sudoku-store";
 import { add_to_level_history, type LevelHistory } from "./level-history";
 type ActiveFieldStore = {
 	column: number;
@@ -65,7 +65,10 @@ export function set_active_field_value(value: number, store: ActiveFieldStore) {
 			errors_count: mode === "notes" ? errors_count : is_solved ? errors_count : errors_count + 1
 		};
 	}
-	return sudoku_store.update(updater);
+	sudoku_store.update(updater);
+	if (is_solved) {
+		last_filled_cell.set({ row, col: column });
+	}
 }
 
 export function set_field(value: LevelHistory) {

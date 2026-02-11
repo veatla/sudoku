@@ -8,5 +8,10 @@
 	"button_new_game": "New game",
 	"title_you_lose": "You Lose!",
 	"you_made_3_mistakes": "You have made 3 mistakes and lost this game",
-	"page_game_title": "Game"
+	"page_game_title": "Game",
+	"title_you_win": "You Win!",
+	"you_completed_sudoku": "You have completed the puzzle. Well done!",
+	"button_start_game": "Start game",
+	"button_continue_game": "Continue",
+	"difficulty_label": "Difficulty"
 }

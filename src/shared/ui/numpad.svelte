@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { active_field, set_active_field_value } from "$shared/active-field";
 	import { sudoku_store } from "$shared/sudoku-store";
+	import { timer_store } from "$shared/timer-store";
 	import Button from "./button.svelte";
 
 	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -15,12 +16,14 @@
 		const active_row = $sudoku_store.unsolved[row] || [];
 		is_active_field_solved = active_row[col]?.state === "default";
 	}
+
+	$: is_paused = $timer_store.paused;
 </script>
 
-<div class="buttons-list">
+<div class="buttons-list" aria-disabled={is_paused}>
 	{#each numbers as number}
 		<Button
-			disabled={is_active_field_solved}
+			disabled={is_active_field_solved || is_paused}
 			variant="game"
 			on:click={() => handle_click_number(number)}
 		>

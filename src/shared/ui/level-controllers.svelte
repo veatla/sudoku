@@ -3,6 +3,7 @@
 	import { set_field } from "$shared/active-field";
 	import { remove_last_from_level_history } from "$shared/level-history";
 	import { sudoku_store } from "$shared/sudoku-store";
+	import { timer_store } from "$shared/timer-store";
 	import Button from "./button.svelte";
 	import Timer from "./timer.svelte";
 
@@ -26,8 +27,9 @@
 	</p>
 	<Timer />
 </div>
-<div class="controllers">
+<div class="controllers" aria-disabled={$timer_store.paused}>
 	<Button
+		disabled={$timer_store.paused}
 		on:click={handle_click_undo}
 		--aspect-ratio="1/1"
 		--width="var(--sudoku-control-btn-size)"
@@ -50,6 +52,7 @@
 		</svg>
 	</Button>
 	<Button
+		disabled={$timer_store.paused}
 		on:click={handle_click_note}
 		--aspect-ratio="1/1"
 		--width="var(--sudoku-control-btn-size)"

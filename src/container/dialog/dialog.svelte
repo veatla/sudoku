@@ -25,7 +25,7 @@
 		{#if $dialog_store === DIALOG_STORE.YOU_LOSE}
 			<YouLoseDialog />
 		{:else if $dialog_store === DIALOG_STORE.YOU_WIN}
-			<YouWinDialog {subscriber} />
+			<YouWinDialog />
 		{/if}
 	</div>
 </div>

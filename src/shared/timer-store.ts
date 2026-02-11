@@ -3,7 +3,7 @@ import { writable } from "svelte/store";
 /** Stores time in milliseconds */
 export const timer_store = writable({
 	count: 0,
-	paused: false
+	paused: true
 });
 
 function number_to_time_string(value: number, break_condition?: boolean): string {
