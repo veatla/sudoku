@@ -1,10 +1,10 @@
 <script>
-	import { t } from '$hooks/i18n';
-	import { set_field } from '$shared/active-field';
-	import { remove_last_from_level_history } from '$shared/level-history';
-	import { sudoku_store } from '$shared/sudoku-store';
-	import Button from './button.svelte';
-	import Timer from './timer.svelte';
+	import { t } from "$hooks/i18n";
+	import { set_field } from "$shared/active-field";
+	import { remove_last_from_level_history } from "$shared/level-history";
+	import { sudoku_store } from "$shared/sudoku-store";
+	import Button from "./button.svelte";
+	import Timer from "./timer.svelte";
 
 	function handle_click_undo() {
 		const item = remove_last_from_level_history();
@@ -13,7 +13,7 @@
 
 	function handle_click_note() {
 		sudoku_store.update((prev) => {
-			prev.mode = prev.mode === 'input' ? 'notes' : 'input';
+			prev.mode = prev.mode === "input" ? "notes" : "input";
 			return prev;
 		});
 	}
@@ -21,7 +21,7 @@
 
 <div class="controllers-header">
 	<p>
-		{$t('sudoku.mistakes')}:
+		{$t("sudoku.mistakes")}:
 		{$sudoku_store.errors_count}/3
 	</p>
 	<Timer />
@@ -54,7 +54,7 @@
 		--aspect-ratio="1/1"
 		--width="56px"
 		is_rounded
-		class={$sudoku_store.mode === 'notes' ? "note-button" : ""}
+		class={$sudoku_store.mode === "notes" ? "note-button" : ""}
 		variant="game"
 		title="Note"
 	>
@@ -82,12 +82,14 @@
 		justify-content: space-between;
 		display: flex;
 		grid-auto-rows: 1fr 1fr;
+		gap: 10px;
 		align-items: center;
 		margin-bottom: 10px;
 	}
 	.controllers-header {
 		justify-content: space-between;
 		display: flex;
+		gap: 10px;
 	}
 	.controllers-header p {
 		font-weight: 700;

@@ -1,5 +1,5 @@
 <script lang="ts">
-	export let variant: 'default' | 'secondary' | 'game' = 'default';
+	export let variant: "default" | "secondary" | "game" = "default";
 	export let disabled: boolean = false;
 	export let is_rounded: boolean = false;
 	// export let on_click: (() => void) | undefined = undefined;
@@ -9,7 +9,7 @@
 	{disabled}
 	on:click
 	title={$$props.title}
-	class={['btn', variant, $$props.class].join(' ').trim()}
+	class={["btn", variant, $$props.class].join(" ").trim()}
 	data-variant={variant}
 	data-is-rounded={is_rounded}
 >
@@ -55,6 +55,7 @@
 		width: var(--width, 100px);
 		height: var(--width, 100px);
 		align-items: center;
+		font-size: 80%;
 	}
 	.btn:is(.game):disabled {
 		background-color: #cbd2dd;
@@ -65,7 +66,7 @@
 	.btn:is(.game):not(:disabled):active {
 		background-color: #d2dae7;
 	}
-	.btn[data-is-rounded='true'] {
+	.btn[data-is-rounded="true"] {
 		border-radius: 50%;
 	}
 </style>

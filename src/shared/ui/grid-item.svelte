@@ -1,27 +1,26 @@
 <script lang="ts">
-	import { SUDOKU_REGION_LENGTH } from '$constants';
-	import { active_field } from '$shared/active-field';
-	import { sudoku_store } from '$shared/sudoku-store';
-	import { timer_store } from '$shared/timer-store';
-	import type { Grid } from '$utils/sudoku';
+	import { SUDOKU_REGION_LENGTH } from "$constants";
+	import { active_field } from "$shared/active-field";
+	import { sudoku_store } from "$shared/sudoku-store";
+	import { timer_store } from "$shared/timer-store";
+	import type { Grid } from "$utils/sudoku";
 
-	export let column: number;
-	export let row: number;
-
-	const default_field = { value: 0, notes: [], state: 'default' };
+	export let data: number;
+	let column = (data - 1) % 9;
+	let row = Math.floor((data - 1) / 9);
+	const default_field = { value: 0, notes: [], state: "default" };
 
 	function check_active_region() {
-		function check_condition(current: number, active: number) {
+		function check_condition(a: string, current: number, active: number) {
 			// Check column region id (Inside 1,2 or 3rd region)
 			const column_region = Math.floor(current / SUDOKU_REGION_LENGTH);
 
 			// check active column region id
 			const active_column_region = Math.floor(active / SUDOKU_REGION_LENGTH);
-
 			return column_region === active_column_region;
 		}
-		const column_condition = check_condition(column, $active_field.column);
-		const row_condition = check_condition(row, $active_field.row);
+		const column_condition = check_condition("col", column, $active_field.column);
+		const row_condition = check_condition("row", row, $active_field.row);
 
 		return column_condition && row_condition;
 	}
@@ -46,10 +45,13 @@
 	data-state={field.state}
 	data-active-column={is_active_column}
 	data-active-region={is_active_region}
+	data-column={column}
+	data-row={row}
 	data-active-field={is_active_column && is_active_row}
 	class="grid-item"
 >
-	{#if !$timer_store.paused} 
+	<!-- {column}:{row} -->
+	{#if !$timer_store.paused}
 		{#if field.value !== 0}
 			{field.value}
 		{:else if field.notes.length}
@@ -65,8 +67,8 @@
 <style>
 	.grid-item {
 		border: 1px solid var(--sudoku-field-border);
-		width: 50px;
-		height: 50px;
+		/* max-width: 50px;
+		max-height: 50px; */
 		text-align: center;
 		background-color: var(--sudoku-field-color);
 		color: var(--sudoku-text-color);
@@ -76,36 +78,48 @@
 		outline: none;
 	}
 
-	@media only screen and ( max-width: 800px ) {
+	@media only screen and (max-width: 800px) {
 		.grid-item {
-			width: calc(100% / 9);
-			height: 100%;
+			/* width: calc(100% / 9);
+			height: 100%; */
 		}
 	}
 
-	.grid-item[data-active-column='true'] {
+	.grid-item[data-active-column="true"] {
 		background-color: var(--sudoku-active-line);
 	}
-	.grid-item[data-active-row='true'] {
+	.grid-item[data-active-row="true"] {
 		background-color: var(--sudoku-active-line);
 	}
-	.grid-item[data-active-region='true'] {
+	.grid-item[data-active-region="true"] {
 		background-color: var(--sudoku-active-region);
 	}
-	.grid-item[data-state='err'] {
+	.grid-item[data-state="err"] {
 		color: var(--error-text-color);
 		background-color: var(--sudoku-error-field);
 	}
-	.grid-item[data-active-field='true'] {
+	.grid-item[data-active-field="true"] {
 		background-color: var(--sudoku-active-field);
 	}
-	.grid-item[data-state='ok'] {
+	.grid-item[data-state="ok"] {
 		color: var(--solved-text-color);
 	}
-	.grid-item:nth-of-type(3n) {
+
+	.grid-item[data-row="2"],
+	.grid-item[data-row="5"] {
+		border-bottom-color: var(--sudoku-region-border);
+	}
+	.grid-item[data-row="3"],
+	.grid-item[data-row="6"] {
+		border-top-color: var(--sudoku-region-border);
+	}
+
+	.grid-item[data-column="2"],
+	.grid-item[data-column="5"] {
 		border-right-color: var(--sudoku-region-border);
 	}
-	.grid-item:nth-of-type(3n + 1) {
+	.grid-item[data-column="3"],
+	.grid-item[data-column="6"] {
 		border-left-color: var(--sudoku-region-border);
 	}
 
@@ -113,53 +127,53 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		font-size: .9rem;
+		font-size: 0.9rem;
 		font-weight: 400;
 		color: var(--sudoku-region-border);
 	}
-	.note-item[data-note='1'] {
+	.note-item[data-note="1"] {
 		top: 0%;
 		left: 0%;
 		transform: translate(50%, 0%);
 	}
-	.note-item[data-note='2'] {
+	.note-item[data-note="2"] {
 		top: 0%;
 		left: 50%;
 		transform: translate(-50%, 0%);
 	}
-	.note-item[data-note='3'] {
+	.note-item[data-note="3"] {
 		top: 0%;
 		left: 100%;
 		transform: translate(-150%, 0%);
 	}
-	.note-item[data-note='4'] {
+	.note-item[data-note="4"] {
 		top: 50%;
 		left: 0%;
 		transform: translate(50%, -50%);
 	}
-	.note-item[data-note='5'] {
+	.note-item[data-note="5"] {
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
 	}
-	.note-item[data-note='6'] {
+	.note-item[data-note="6"] {
 		top: 50%;
 		left: 100%;
 		transform: translate(-150%, -50%);
 	}
-	.note-item[data-note='7'] {
+	.note-item[data-note="7"] {
 		bottom: 0;
 		top: unset;
 		left: 0;
 		transform: translate(50%, 0%);
 	}
-	.note-item[data-note='8'] {
+	.note-item[data-note="8"] {
 		bottom: 0;
 		top: unset;
 		left: 50%;
 		transform: translate(-50%, 0%);
 	}
-	.note-item[data-note='9'] {
+	.note-item[data-note="9"] {
 		bottom: 0;
 		top: unset;
 		left: 100%;

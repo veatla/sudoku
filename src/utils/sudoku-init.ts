@@ -10,17 +10,18 @@ export function get_random_number(min: number, max: number) {
 export function create_empty_grid(): Grid {
 	const grid = new Array(SUDOKU_LIMIT_LENGTH);
 	for (let i = 0; i < SUDOKU_LIMIT_LENGTH; i++) {
-		const arr = [];
+		const arr = Array.from({ length: SUDOKU_LIMIT_LENGTH }, () => ({ value: 0, state: "none", notes: [] })
+	);
 
 		// If I use new Array(SUDOKU_LIMIT_LENGTH).fil(...) It's broke all logic.
 		// Idk why. But I think I know why
-		for (let i = 0; i < SUDOKU_LIMIT_LENGTH; i++) {
-			arr.push({
-				value: 0,
-				state: "none",
-				notes: []
-			});
-		}
+		// for (let i = 0; i < SUDOKU_LIMIT_LENGTH; i++) {
+		// 	arr.push({
+		// 		value: 0,
+		// 		state: "none",
+		// 		notes: []
+		// 	});
+		// }
 		grid[i] = arr;
 	}
 	return grid;

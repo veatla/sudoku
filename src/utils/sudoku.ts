@@ -21,9 +21,9 @@ export type Grid = {
 
 /** To get unresolved and solved sudoku */
 export function get_sudoku(
-	resolve_seed?: string,
-	fill_seed?: string,
-	difficulty?: SUDOKU_DIFFICULTY
+	resolve_seed?: string | null,
+	fill_seed?: string | null,
+	difficulty?: SUDOKU_DIFFICULTY | null
 ) {
 	const sudoku = {
 		solved: create_empty_grid(),
