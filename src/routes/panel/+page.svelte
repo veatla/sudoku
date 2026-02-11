@@ -2,7 +2,7 @@
 	import Grid from "$shared/ui/grid.svelte";
 	import LevelControllers from "$shared/ui/level-controllers.svelte";
 	import Numpad from "$shared/ui/numpad.svelte";
-	import { t } from "$hooks/i18n";
+	import { m } from "$lib/paraglide/messages";
 
 	const data = {
 		difficulty: undefined,
@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-	<title>{$t("Game")}</title>
+	<title>{m.page_game_title()}</title>
 </svelte:head>
 <section>
 	<Grid difficulty={data.difficulty} fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
@@ -51,7 +51,12 @@
 	}
 
 	/* если высоты мало (например, Twitch panel) — прячем numpad */
-	@media screen and (max-height: 612px) and (max-width: 800px) {
+	@media (max-height: 612px) and (max-width: 676px), (max-width: 700px) and (max-height: 500px) {
+		section {
+			flex-direction: column;
+			column-gap: 0;
+			row-gap: 12px;
+		}
 		.panel-numpad {
 			display: none;
 		}

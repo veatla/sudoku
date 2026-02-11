@@ -2,15 +2,15 @@
 	import Grid from "$shared/ui/grid.svelte";
 	import LevelControllers from "$shared/ui/level-controllers.svelte";
 	import Numpad from "$shared/ui/numpad.svelte";
-	import { t } from "$hooks/i18n";
+	import { m } from "$lib/paraglide/messages";
 
 	import type { PageServerData } from "./$types";
 	let { data }: { data: PageServerData } = $props();
 </script>
 
 <svelte:head>
-	<title>{$t("page.main")}</title>
-	<meta name="description" content="Sudoku" />
+	<title>{m.page_main()}</title>
+	<meta name="description" content={m.sudoku()} />
 </svelte:head>
 
 <section>

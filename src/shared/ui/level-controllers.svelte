@@ -1,5 +1,5 @@
 <script>
-	import { t } from "$hooks/i18n";
+	import { m } from "$lib/paraglide/messages";
 	import { set_field } from "$shared/active-field";
 	import { remove_last_from_level_history } from "$shared/level-history";
 	import { sudoku_store } from "$shared/sudoku-store";
@@ -21,7 +21,7 @@
 
 <div class="controllers-header">
 	<p>
-		{$t("sudoku.mistakes")}:
+		{m.sudoku_mistakes()}:
 		{$sudoku_store.errors_count}/3
 	</p>
 	<Timer />

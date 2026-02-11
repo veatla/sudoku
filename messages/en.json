@@ -1,0 +1,12 @@
+{
+	"$schema": "https://inlang.com/schema/inlang-message-format",
+	"sudoku": "Sudoku",
+	"page_main": "Main",
+	"sudoku_mistakes": "Mistakes",
+	"button_play": "Play",
+	"button_restart": "Restart",
+	"button_new_game": "New game",
+	"title_you_lose": "You Lose!",
+	"you_made_3_mistakes": "You have made 3 mistakes and lost this game",
+	"page_game_title": "Game"
+}
