@@ -18,7 +18,7 @@
 	<Grid difficulty={data.difficulty} fill_seed={data.fill_seed} resolve_seed={data.resolved_seed} />
 	<div class="right-side">
 		<LevelControllers />
-		<div class="panel-numpad">
+		<div class="panel-numpad numpad-wrap">
 			<Numpad />
 		</div>
 	</div>
@@ -30,32 +30,30 @@
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
-		/* по умолчанию — landscape: numpad справа */
 		flex-direction: row;
-		column-gap: 24px;
+		column-gap: var(--sudoku-section-gap);
 	}
 
-	/* портретные / высокие экраны — numpad снизу */
 	@media (orientation: portrait) {
 		section {
 			flex-direction: column;
 			column-gap: 0;
-			row-gap: 12px;
+			row-gap: var(--sudoku-section-gap);
 		}
 	}
 
 	.right-side {
 		display: flex;
 		flex-direction: column;
-		gap: 10px;
+		gap: var(--sudoku-ui-gap);
 	}
 
-	/* если высоты мало (например, Twitch panel) — прячем numpad */
-	@media (max-height: 612px) and (max-width: 676px), (max-width: 700px) and (max-height: 500px) {
+	/* Twitch panel 318×496: compact column layout, hide numpad */
+	@media (max-width: 320px) and (max-height: 500px) {
 		section {
 			flex-direction: column;
 			column-gap: 0;
-			row-gap: 12px;
+			row-gap: var(--sudoku-section-gap);
 		}
 		.panel-numpad {
 			display: none;

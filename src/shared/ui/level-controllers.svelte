@@ -30,7 +30,7 @@
 	<Button
 		on:click={handle_click_undo}
 		--aspect-ratio="1/1"
-		--width="56px"
+		--width="var(--sudoku-control-btn-size)"
 		is_rounded
 		variant="game"
 		title="Undo"
@@ -52,7 +52,7 @@
 	<Button
 		on:click={handle_click_note}
 		--aspect-ratio="1/1"
-		--width="56px"
+		--width="var(--sudoku-control-btn-size)"
 		is_rounded
 		class={$sudoku_store.mode === "notes" ? "note-button" : ""}
 		variant="game"
@@ -82,13 +82,16 @@
 		justify-content: space-between;
 		display: flex;
 		grid-auto-rows: 1fr 1fr;
-		gap: 10px;
+		gap: var(--sudoku-ui-gap);
 		align-items: center;
 	}
 	.controllers-header {
 		justify-content: space-between;
 		display: flex;
-		gap: 10px;
+		gap: var(--sudoku-ui-gap);
+	}
+	.controllers-header {
+		font-size: var(--sudoku-header-font-size);
 	}
 	.controllers-header p {
 		font-weight: 700;

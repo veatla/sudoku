@@ -30,5 +30,19 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
+		min-height: 100vh;
+		min-height: 100dvh;
+		box-sizing: border-box;
+		padding: 8px;
+	}
+	@media (min-width: 768px) {
+		.app {
+			padding: 16px;
+		}
+	}
+	@media (min-width: 1280px) {
+		.app {
+			padding: 24px;
+		}
 	}
 </style>

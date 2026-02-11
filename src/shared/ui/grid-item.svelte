@@ -74,6 +74,8 @@
 		cursor: pointer;
 		position: relative;
 		outline: none;
+		font-size: var(--sudoku-cell-font-size);
+		font-weight: 700;
 	}
 
 	.grid-item[data-active-column="true"] {
@@ -118,7 +120,7 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		font-size: 0.9rem;
+		font-size: var(--sudoku-note-font-size);
 		font-weight: 400;
 		color: var(--sudoku-region-border);
 	}

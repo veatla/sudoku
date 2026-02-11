@@ -94,22 +94,17 @@
 
 <style>
 	.grid {
-		width: 452px;
-		height: 452px;
+		--grid-size: min(var(--sudoku-grid-max), calc(100vmin - var(--sudoku-section-gap)));
+		width: var(--grid-size);
+		height: var(--grid-size);
+		max-width: 100%;
+		max-height: 100%;
 		box-sizing: border-box;
 		border: 2px solid var(--sudoku-region-border);
 		aspect-ratio: 1/1;
 		display: grid;
 		grid-template-columns: repeat(9, 1fr);
 		grid-template-rows: repeat(9, 1fr);
-	}
-
-	/* Twitch extension target: ~318x496 — remove extra padding, keep grid visible */
-	@media only screen and (max-width: 320px) and (max-height: 500px) {
-		.grid {
-			width: calc(100vw - 10px);
-			height: calc(100vw - 10px);
-		}
 	}
 
 	:global(.grid-row:nth-child(3n) > *) {

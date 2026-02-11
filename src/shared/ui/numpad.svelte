@@ -33,8 +33,10 @@
 	.buttons-list {
 		box-sizing: border-box;
 		display: grid;
-		gap: 10px;
+		gap: var(--sudoku-ui-gap);
 		grid-template-columns: repeat(3, auto);
 		aspect-ratio: 1/1;
+		transform: scale(var(--sudoku-numpad-btn-scale));
+		transform-origin: center top;
 	}
 </style>
