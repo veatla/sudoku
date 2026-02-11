@@ -4,7 +4,9 @@ import adapter from '@sveltejs/adapter-vercel';
 const config = {
 	kit: {
 		adapter: adapter({
-			isr: true,
+			isr: {
+				expiration: 60,
+			},
 			pages: "build",
 			assets: "build",
 			fallback: "panel.html",

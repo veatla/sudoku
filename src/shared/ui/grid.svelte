@@ -2,11 +2,11 @@
 	import { onMount } from 'svelte';
 
 	import { SUDOKU_FIELDS_COUNT } from '$constants';
-	import { get_random_seed } from '$/funcs/get-random-seed';
-	import dialog_store, { DIALOG_STORE } from '$/shared/dialog-store';
-	import { timer_store } from '$/shared/timer-store';
-	import { active_field } from '$/shared/active-field';
-	import { filled_counts, sudoku_store } from '$/shared/sudoku-store';
+	import { get_random_seed } from '$funcs/get-random-seed';
+	import dialog_store, { DIALOG_STORE } from '$shared/dialog-store';
+	import { timer_store } from '$shared/timer-store';
+	import { active_field } from '$shared/active-field';
+	import { filled_counts, sudoku_store } from '$shared/sudoku-store';
 	import { SUDOKU_DIFFICULTY, get_sudoku } from '$utils/sudoku';
 	import GridItem from './grid-item.svelte';
 

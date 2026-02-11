@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { SUDOKU_REGION_LENGTH } from '$constants';
-	import { active_field } from '$/shared/active-field';
-	import { sudoku_store } from '$/shared/sudoku-store';
-	import { timer_store } from '$/shared/timer-store';
+	import { active_field } from '$shared/active-field';
+	import { sudoku_store } from '$shared/sudoku-store';
+	import { timer_store } from '$shared/timer-store';
 	import type { Grid } from '$utils/sudoku';
 
 	export let column: number;

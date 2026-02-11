@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { active_field, set_active_field_value } from '$/shared/active-field';
-	import { sudoku_store } from '$/shared/sudoku-store';
+	import { active_field, set_active_field_value } from '$shared/active-field';
+	import { sudoku_store } from '$shared/sudoku-store';
 	import Button from './button.svelte';
 
 	const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];

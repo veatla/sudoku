@@ -1,6 +1,6 @@
 <script>
-	import { get_random_seed } from '$/funcs/get-random-seed';
-	import Button from '$/shared/ui/button.svelte';
+	import { get_random_seed } from '$funcs/get-random-seed';
+	import Button from '$shared/ui/button.svelte';
 	import { t } from '$hooks/i18n';
 
 	function handle_click() {

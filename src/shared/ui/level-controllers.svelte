@@ -1,8 +1,8 @@
 <script>
 	import { t } from '$hooks/i18n';
-	import { set_field } from '$/shared/active-field';
-	import { remove_last_from_level_history } from '$/shared/level-history';
-	import { sudoku_store } from '$/shared/sudoku-store';
+	import { set_field } from '$shared/active-field';
+	import { remove_last_from_level_history } from '$shared/level-history';
+	import { sudoku_store } from '$shared/sudoku-store';
 	import Button from './button.svelte';
 	import Timer from './timer.svelte';
 
