@@ -38,6 +38,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@sveltejs/adapter-static": "^3.0.10",
 		"is-hotkey": "^0.2.0",
 		"seedrandom": "^3.0.5"
 	}
