@@ -15,7 +15,7 @@
 		<slot />
 	</main>
 
-	<footer />
+	<footer> </footer>
 </div>
 
 <style>

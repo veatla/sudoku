@@ -11,6 +11,7 @@ function number_to_time_string(value: number, break_condition?: boolean): string
       else if (value > 9) return `${value}`;
       else return `0${value}`;
 }
+
 export function number_to_time(counter: number) {
       const time = Math.floor(counter / 10);
       const hours = Math.floor(time / 3600);
