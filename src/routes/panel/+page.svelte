@@ -30,7 +30,18 @@
 		justify-content: center;
 		align-items: center;
 		flex: 0.6;
-		gap: 20px;
+		/* по умолчанию — landscape: numpad справа */
+		flex-direction: row;
+		column-gap: 24px;
+	}
+
+	/* портретные / высокие экраны — numpad снизу */
+	@media (orientation: portrait) {
+		section {
+			flex-direction: column;
+			column-gap: 0;
+			row-gap: 12px;
+		}
 	}
 
 	.right-side {
@@ -39,26 +50,8 @@
 		gap: 10px;
 	}
 
-	/* On generic small screens, stack controls under the grid */
-	@media only screen and (max-width: 800px) {
-		section {
-			flex-direction: column;
-			gap: 12px;
-		}
-
-		.right-side {
-			width: 100%;
-			align-items: center;
-		}
-	}
-
-	/* Twitch extension target: ~318x496 — hide numpad and extra padding */
-	@media only screen and (max-width: 320px) and (max-height: 500px) {
-		section {
-			gap: 8px;
-			margin: 10px;
-		}
-
+	/* если высоты мало (например, Twitch panel) — прячем numpad */
+	@media screen and (max-height: 612px) and (max-width: 800px) {
 		.panel-numpad {
 			display: none;
 		}

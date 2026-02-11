@@ -84,7 +84,6 @@
 		grid-auto-rows: 1fr 1fr;
 		gap: 10px;
 		align-items: center;
-		margin-bottom: 10px;
 	}
 	.controllers-header {
 		justify-content: space-between;

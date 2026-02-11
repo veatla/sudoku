@@ -104,35 +104,11 @@
 		grid-template-rows: repeat(9, 1fr);
 	}
 
-	.grid-row {
-		display: flex;
-		border-collapse: collapse;
-		color: var(--sudoku-text-color);
-		font-size: 2rem;
-	}
-
-	@media only screen and (max-width: 800px) {
-		.grid {
-			/* Make the grid responsive and nearly square on small screens */
-			width: 100vw;
-			height: 100vw;
-		}
-
-		.grid-row {
-			font-size: 1.5rem;
-			height: calc((100vw - 1rem) / 9);
-		}
-	}
-
 	/* Twitch extension target: ~318x496 — remove extra padding, keep grid visible */
 	@media only screen and (max-width: 320px) and (max-height: 500px) {
 		.grid {
 			width: calc(100vw - 10px);
 			height: calc(100vw - 10px);
-		}
-
-		.grid-row {
-			height: calc(100vw / 9);
 		}
 	}
 

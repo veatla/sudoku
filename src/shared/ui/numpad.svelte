@@ -34,7 +34,7 @@
 		box-sizing: border-box;
 		display: grid;
 		gap: 10px;
-		grid-template-columns: repeat(3, 100px);
+		grid-template-columns: repeat(3, auto);
 		aspect-ratio: 1/1;
 	}
 </style>

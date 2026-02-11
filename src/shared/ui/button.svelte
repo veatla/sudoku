@@ -52,8 +52,8 @@
 		display: flex;
 		justify-content: center;
 		padding: 0;
-		width: var(--width, 100px);
-		height: var(--width, 100px);
+		width: unset;
+		height: unset;
 		align-items: center;
 		font-size: 80%;
 	}

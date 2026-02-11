@@ -67,8 +67,6 @@
 <style>
 	.grid-item {
 		border: 1px solid var(--sudoku-field-border);
-		/* max-width: 50px;
-		max-height: 50px; */
 		text-align: center;
 		background-color: var(--sudoku-field-color);
 		color: var(--sudoku-text-color);
@@ -76,13 +74,6 @@
 		cursor: pointer;
 		position: relative;
 		outline: none;
-	}
-
-	@media only screen and (max-width: 800px) {
-		.grid-item {
-			/* width: calc(100% / 9);
-			height: 100%; */
-		}
 	}
 
 	.grid-item[data-active-column="true"] {

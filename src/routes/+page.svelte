@@ -29,29 +29,26 @@
 	section {
 		height: 100%;
 		display: flex;
-		flex-direction: row;
 		justify-content: center;
 		align-items: center;
-		gap: 20px;
 		flex: 0.6;
+		/* по умолчанию — landscape: numpad справа */
+		flex-direction: row;
+		column-gap: 24px;
+	}
+
+	/* портретные / высокие экраны — numpad снизу */
+	@media (orientation: portrait) {
+		section {
+			flex-direction: column;
+			column-gap: 0;
+			row-gap: 12px;
+		}
 	}
 
 	.right-side {
 		display: flex;
 		flex-direction: column;
 		gap: 10px;
-	}
-
-	/* Stack controls under the grid on narrow screens */
-	@media only screen and (max-width: 800px) {
-		section {
-			flex-direction: column;
-			gap: 12px;
-		}
-
-		.right-side {
-			width: 100%;
-			align-items: center;
-		}
 	}
 </style>
