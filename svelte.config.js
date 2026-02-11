@@ -4,7 +4,11 @@ import adapter from '@sveltejs/adapter-vercel';
 const config = {
 	kit: {
 		adapter: adapter({
-			isr: true
+			isr: true,
+			pages: "build",
+			assets: "build",
+			fallback: "panel.html",
+			strict: false
 		}),
 		alias: {
 			$components: 'src/components',

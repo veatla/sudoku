@@ -1,10 +1,14 @@
 <script>
-	import Grid from '$components/Grid.svelte';
-	import LevelControllers from '$components/LevelControllers.svelte';
-	import Numpad from '$components/Numpad.svelte';
+	import Grid from '$/shared/ui/grid.svelte';
+	import LevelControllers from '$/shared/ui/level-controllers.svelte';
+	import Numpad from '$/shared/ui/numpad.svelte';
 	import { t } from '$hooks/i18n';
 
-	export let data;
+	const data = {
+		difficulty: undefined,
+		fill_seed: undefined,
+		resolved_seed: undefined
+	}
 </script>
 
 <svelte:head>
@@ -26,8 +30,15 @@
 		flex: 0.6;
 		gap: 20px;
 	}
+
 	.right-side {
 		display: flex;
 		flex-direction: column;
+	}
+
+	@media only screen and ( max-width: 800px ) {
+		.right-side {
+			display: none;
+		}
 	}
 </style>

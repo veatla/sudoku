@@ -1,10 +1,10 @@
 <script>
 	import { t } from '$hooks/i18n';
-	import { set_field } from '$shared/active_field';
-	import { remove_last_from_level_history } from '$shared/level_history';
-	import { sudoku_store } from '$shared/sudoku_store';
-	import Button from './Button.svelte';
-	import Timer from './Timer.svelte';
+	import { set_field } from '$/shared/active-field';
+	import { remove_last_from_level_history } from '$/shared/level-history';
+	import { sudoku_store } from '$/shared/sudoku-store';
+	import Button from './button.svelte';
+	import Timer from './timer.svelte';
 
 	function handle_click_undo() {
 		const item = remove_last_from_level_history();
@@ -28,7 +28,7 @@
 </div>
 <div class="controllers">
 	<Button
-		on_click={handle_click_undo}
+		on:click={handle_click_undo}
 		--aspect-ratio="1/1"
 		--width="56px"
 		is_rounded
@@ -50,7 +50,7 @@
 		</svg>
 	</Button>
 	<Button
-		on_click={handle_click_note}
+		on:click={handle_click_note}
 		--aspect-ratio="1/1"
 		--width="56px"
 		is_rounded

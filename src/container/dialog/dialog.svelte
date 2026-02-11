@@ -1,7 +1,7 @@
 <script>
-	import dialog_store, { DIALOG_STORE } from '$shared/dialog_store';
-	import YouLoseDialog from './GameOverDialog.svelte';
-	import YouWinDialog from './YouWinDialog.svelte';
+	import dialog_store, { DIALOG_STORE } from '$/shared/dialog-store';
+	import YouLoseDialog from './game-over-dialog.svelte';
+	import YouWinDialog from './you-win-dialog.svelte';
 
 	/** @argument {MouseEvent} ev */
 	function click_handler(ev) {
@@ -16,7 +16,7 @@
 		window.document.addEventListener('click', click_handler);
 		return () => {
 			window.document.removeEventListener('click', click_handler);
-		};
+		}; 
 	}
 </script>
 

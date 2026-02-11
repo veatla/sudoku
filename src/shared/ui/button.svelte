@@ -2,12 +2,12 @@
 	export let variant: 'default' | 'secondary' | 'game' = 'default';
 	export let disabled: boolean = false;
 	export let is_rounded: boolean = false;
-	export let on_click: (() => void) | undefined = undefined;
+	// export let on_click: (() => void) | undefined = undefined;
 </script>
 
 <button
 	{disabled}
-	on:click={on_click}
+	on:click
 	title={$$props.title}
 	class={['btn', variant, $$props.class].join(' ').trim()}
 	data-variant={variant}

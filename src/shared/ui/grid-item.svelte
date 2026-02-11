@@ -1,13 +1,12 @@
 <script lang="ts">
 	import { SUDOKU_REGION_LENGTH } from '$constants';
-	import { active_field } from '$shared/active_field';
-	import { sudoku_store } from '$shared/sudoku_store';
-	import { timer_store } from '$shared/timer_store';
+	import { active_field } from '$/shared/active-field';
+	import { sudoku_store } from '$/shared/sudoku-store';
+	import { timer_store } from '$/shared/timer-store';
 	import type { Grid } from '$utils/sudoku';
 
 	export let column: number;
 	export let row: number;
-	export let on_click: (value: number) => void;
 
 	const default_field = { value: 0, notes: [], state: 'default' };
 
@@ -21,8 +20,8 @@
 
 			return column_region === active_column_region;
 		}
-		const column_condition = check_condition(column, $active_field.active_column);
-		const row_condition = check_condition(row, $active_field.active_row);
+		const column_condition = check_condition(column, $active_field.column);
+		const row_condition = check_condition(row, $active_field.row);
 
 		return column_condition && row_condition;
 	}
@@ -33,21 +32,16 @@
 		is_active_region = false;
 
 	$: {
-		is_active_row = $active_field.active_row === row;
-		is_active_column = column === $active_field.active_column;
+		is_active_row = $active_field.row === row;
+		is_active_column = column === $active_field.column;
 		is_active_region = check_active_region();
-		const item = $sudoku_store.unsolved_grid[row]?.[column];
-		if (item) {
-			field = item;
-		}
-	}
-	function handle_on_click_field() {
-		on_click(field.value);
+		const item = $sudoku_store.unsolved[row]?.[column];
+		if (item) field = item;
 	}
 </script>
 
 <button
-	on:click={handle_on_click_field}
+	on:click
 	data-active-row={is_active_row}
 	data-state={field.state}
 	data-active-column={is_active_column}
@@ -81,6 +75,14 @@
 		position: relative;
 		outline: none;
 	}
+
+	@media only screen and ( max-width: 800px ) {
+		.grid-item {
+			width: calc(100% / 9);
+			height: 100%;
+		}
+	}
+
 	.grid-item[data-active-column='true'] {
 		background-color: var(--sudoku-active-line);
 	}

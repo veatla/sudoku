@@ -19,7 +19,7 @@ export function unresolve_sudoku(sudoku: Grid, filled_fields = 30, seed: seedran
 			filled.count += 1;
 		} else {
 			sudoku[i][j].value = 0;
-			sudoku[i][j].state = 'none';
+			sudoku[i][j].state = "none";
 		}
 	}
 
